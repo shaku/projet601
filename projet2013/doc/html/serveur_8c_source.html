@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>INFO0601 Projet_Ecoffet_Warlier:  Fichier source de serveur.c</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">INFO0601 Projet_Ecoffet_Warlier
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">serveur.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="serveur_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="serveur_8h.html">serveur.h</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 
+<a name="l00004"></a><a class="code" href="serveur_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">00004</a> <span class="keywordtype">int</span> <a class="code" href="client_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)
+<a name="l00005"></a>00005 {
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007     <span class="keywordtype">char</span> *fichier, tampon[255];
+<a name="l00008"></a>00008     <span class="keywordtype">int</span> choix = 1, largeur, hauteur, shm_id, msg_id[2];
+<a name="l00009"></a>00009     pthread_t connexion, principale;
+<a name="l00010"></a>00010     <a class="code" href="structserveur__t.html">serveur_t</a> serveur;
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013     <span class="keywordflow">while</span> (choix != 0) {
+<a name="l00014"></a>00014         system(<span class="stringliteral">&quot;clear&quot;</span>);
+<a name="l00015"></a>00015         <span class="keywordflow">if</span> (choix &gt; 3 || choix &lt; 1) {
+<a name="l00016"></a>00016             printf(<span class="stringliteral">&quot;Choix non disponible\n&quot;</span>);
+<a name="l00017"></a>00017         }
+<a name="l00018"></a>00018         printf(<span class="stringliteral">&quot;====== MENU ======\n&quot;</span>);
+<a name="l00019"></a>00019         printf(<span class="stringliteral">&quot;1. Lancer le jeu.\n&quot;</span>);
+<a name="l00020"></a>00020         printf(<span class="stringliteral">&quot;2. Créer une liste de criminel.\n&quot;</span>);
+<a name="l00021"></a>00021         printf(<span class="stringliteral">&quot;3. Créer une carte aléatoirement.\n&quot;</span>);
+<a name="l00022"></a>00022         printf(<span class="stringliteral">&quot;0. Quitter le jeu.\n&quot;</span>);
+<a name="l00023"></a>00023         printf(<span class="stringliteral">&quot;Choix : &quot;</span>);
+<a name="l00024"></a>00024         <span class="keywordflow">while</span> (!scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;choix)) {
+<a name="l00025"></a>00025             <span class="keywordflow">while</span> (getchar() != <span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00026"></a>00026             printf(<span class="stringliteral">&quot;Vous devez saisir un entier.\n&quot;</span>);
+<a name="l00027"></a>00027             printf(<span class="stringliteral">&quot;Choix : &quot;</span>);
+<a name="l00028"></a>00028         }
+<a name="l00029"></a>00029         <span class="keywordflow">switch</span> (choix) {
+<a name="l00030"></a>00030         <span class="keywordflow">case</span> 1:
+<a name="l00031"></a>00031             <span class="comment">/* création mémoire partagée</span>
+<a name="l00032"></a>00032 <span class="comment">               création file de message</span>
+<a name="l00033"></a>00033 <span class="comment">               création thread programme principale</span>
+<a name="l00034"></a>00034 <span class="comment">               création thread connexion */</span>
+<a name="l00035"></a>00035             <span class="comment">/* MEMOIRE PARTAGEE */</span>
+<a name="l00036"></a>00036             shm_id = 0;
+<a name="l00037"></a>00037             shm_id = shm_id;
+<a name="l00038"></a>00038             <span class="comment">/* FILE DE MESSAGE */</span>
+<a name="l00039"></a>00039             <span class="keywordflow">if</span> ((msg_id[0] = msgget(<a class="code" href="include_8h.html#a309166c7f56efec2df84570f6c69b830">CLE_MSG_CS</a>, 0777 | IPC_CREAT)) == -1) {
+<a name="l00040"></a>00040                 printf
+<a name="l00041"></a>00041                     (<span class="stringliteral">&quot;Erreur lors de la création de la file de message.\n&quot;</span>);
+<a name="l00042"></a>00042                 <span class="keywordflow">break</span>;
+<a name="l00043"></a>00043             }
+<a name="l00044"></a>00044             <span class="keywordflow">if</span> ((msg_id[1] = msgget(<a class="code" href="include_8h.html#a00a12be448019269e11482b3a6a13c59">CLE_MSG_SC</a>, 0777 | IPC_CREAT)) == -1) {
+<a name="l00045"></a>00045                 printf
+<a name="l00046"></a>00046                     (<span class="stringliteral">&quot;Erreur lors de la création de la file de message.\n&quot;</span>);
+<a name="l00047"></a>00047                 <span class="keywordflow">break</span>;
+<a name="l00048"></a>00048             }
+<a name="l00049"></a>00049             <span class="comment">/*Création thread connexion */</span>
+<a name="l00050"></a>00050             printf(<span class="stringliteral">&quot;Adresse ip : &quot;</span>);
+<a name="l00051"></a>00051             scanf(<span class="stringliteral">&quot;%s&quot;</span>, tampon);
+<a name="l00052"></a>00052             serveur.<a class="code" href="structserveur__t.html#aa58e296b2b66e04d38d39cd0099d03cb">adresse</a> = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * strlen(tampon));
+<a name="l00053"></a>00053             strcpy(serveur.<a class="code" href="structserveur__t.html#aa58e296b2b66e04d38d39cd0099d03cb">adresse</a>, tampon);
+<a name="l00054"></a>00054             printf(<span class="stringliteral">&quot;Port : &quot;</span>);
+<a name="l00055"></a>00055             scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;serveur.<a class="code" href="structserveur__t.html#a63c89c04d1feae07ca35558055155ffb">port</a>);
+<a name="l00056"></a>00056             pthread_create(&amp;connexion, NULL, <a class="code" href="connexion_8c.html#a450d74dd8f9416069371fcfd27d494f2">routine_connexion</a>, &amp;serveur);
+<a name="l00057"></a>00057             <span class="comment">/* Création thread principale </span>
+<a name="l00058"></a>00058 <span class="comment">               pthread_create(*principale,NULL,(void *)routine_principale,0); */</span>
+<a name="l00059"></a>00059             choix = 0;
+<a name="l00060"></a>00060             pthread_join(connexion, 0);
+<a name="l00061"></a>00061             printf(<span class="stringliteral">&quot;Jeux en cours.\n&quot;</span>);
+<a name="l00062"></a>00062             <span class="keywordflow">break</span>;
+<a name="l00063"></a>00063         <span class="keywordflow">case</span> 2:
+<a name="l00064"></a>00064             printf(<span class="stringliteral">&quot;Nom du fichier à créer : &quot;</span>);
+<a name="l00065"></a>00065             scanf(<span class="stringliteral">&quot;%s&quot;</span>, tampon);
+<a name="l00066"></a>00066             fichier = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * strlen(tampon));
+<a name="l00067"></a>00067             strcpy(fichier, tampon);
+<a name="l00068"></a>00068             <a class="code" href="criminel_8c.html#aede6f09bda6dc8f575af1f365c6d444e">genererCriminel</a>(fichier);
+<a name="l00069"></a>00069             <span class="keywordflow">break</span>;
+<a name="l00070"></a>00070         <span class="keywordflow">case</span> 3:
+<a name="l00071"></a>00071             printf(<span class="stringliteral">&quot;Nom du fichier à créer : &quot;</span>);
+<a name="l00072"></a>00072             scanf(<span class="stringliteral">&quot;%s&quot;</span>, tampon);
+<a name="l00073"></a>00073             fichier = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * strlen(tampon));
+<a name="l00074"></a>00074             strcpy(fichier, tampon);
+<a name="l00075"></a>00075             printf(<span class="stringliteral">&quot;Hauteur : &quot;</span>);
+<a name="l00076"></a>00076             scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;hauteur);
+<a name="l00077"></a>00077             printf(<span class="stringliteral">&quot;Largeur : &quot;</span>);
+<a name="l00078"></a>00078             scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;largeur);
+<a name="l00079"></a>00079             <a class="code" href="carte_8c.html#a825e0e0fd0d9dec4746a8860d73b4af3">generateurCarte</a>(fichier, hauteur, largeur);
+<a name="l00080"></a>00080             <span class="keywordflow">break</span>;
+<a name="l00081"></a>00081         <span class="keywordflow">case</span> 0:
+<a name="l00082"></a>00082             <span class="keywordflow">break</span>;
+<a name="l00083"></a>00083         <span class="keywordflow">default</span>:
+<a name="l00084"></a>00084             <span class="keywordflow">break</span>;
+<a name="l00085"></a>00085         }
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087     <span class="keywordflow">return</span> 0;
+<a name="l00088"></a>00088 }
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 4 2013 09:05:55 pour INFO0601 Projet_Ecoffet_Warlier par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

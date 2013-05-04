@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>INFO0601 Projet_Ecoffet_Warlier:  Fichier source de connexion.c</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">INFO0601 Projet_Ecoffet_Warlier
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">connexion.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="connexion_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="connexion_8h.html">connexion.h</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 
+<a name="l00004"></a><a class="code" href="connexion_8h.html#a450d74dd8f9416069371fcfd27d494f2">00004</a> <span class="keywordtype">void</span>* <a class="code" href="connexion_8c.html#a450d74dd8f9416069371fcfd27d494f2">routine_connexion</a>(<span class="keywordtype">void</span> *s)
+<a name="l00005"></a>00005 {
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007     <span class="keywordtype">int</span> statut_joueur[<a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>] = { 0 };
+<a name="l00008"></a>00008     <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 0;
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010     <a class="code" href="structure_8h.html#a8dc8083897335125630f1af5dafd5831">SOCKET</a> socket_serveur;      <span class="comment">/* socket serveur */</span>
+<a name="l00011"></a>00011     pthread_t joueurs[<a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>];
+<a name="l00012"></a>00012     <a class="code" href="structure_8h.html#a29046dc0232f0e5c70adbc25090d77b8">SOCKADDR_IN</a> in_socket_client[<a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>];   <span class="comment">/* interface client */</span>
+<a name="l00013"></a>00013     <a class="code" href="structure_8h.html#a8dc8083897335125630f1af5dafd5831">SOCKET</a> socket_client[<a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>];   <span class="comment">/* socket client */</span>
+<a name="l00014"></a>00014     <a class="code" href="structure_8h.html#a29046dc0232f0e5c70adbc25090d77b8">SOCKADDR_IN</a> in_socket_serveur;      <span class="comment">/* interface serveur */</span>
+<a name="l00015"></a>00015     socklen_t taille;
+<a name="l00016"></a>00016     <a class="code" href="structserveur__t.html">serveur_t</a> *serveur = (<a class="code" href="structserveur__t.html">serveur_t</a> *) s;
+<a name="l00017"></a>00017     <span class="comment">/* Initialisation socket serveur + interface */</span>
+<a name="l00018"></a>00018     <span class="keywordflow">if</span> ((socket_serveur =
+<a name="l00019"></a>00019          socket(AF_INET, SOCK_STREAM, 0)) == <a class="code" href="include_8h.html#a26769957ec1a2beaf223f33b66ee64ab">INVALID_SOCKET</a>) {
+<a name="l00020"></a>00020         perror(<span class="stringliteral">&quot;Problème socket serveur&quot;</span>);
+<a name="l00021"></a>00021         exit(errno);
+<a name="l00022"></a>00022     }
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024     in_socket_serveur.sin_addr.s_addr = inet_addr(serveur-&gt;<a class="code" href="structserveur__t.html#aa58e296b2b66e04d38d39cd0099d03cb">adresse</a>);
+<a name="l00025"></a>00025     in_socket_serveur.sin_family = AF_INET;
+<a name="l00026"></a>00026     in_socket_serveur.sin_port = htons(serveur-&gt;<a class="code" href="structserveur__t.html#a63c89c04d1feae07ca35558055155ffb">port</a>);
+<a name="l00027"></a>00027     <span class="comment">/* BIND */</span>
+<a name="l00028"></a>00028     <span class="keywordflow">if</span> (bind
+<a name="l00029"></a>00029         (socket_serveur, (<a class="code" href="structure_8h.html#ae334b73cedf7204187dce3f817576009">SOCKADDR</a> *) &amp; in_socket_serveur,
+<a name="l00030"></a>00030          <span class="keyword">sizeof</span>(in_socket_serveur)) == <a class="code" href="include_8h.html#a633b0396ff93d336a088412a190a5072">SOCKET_ERROR</a>) {
+<a name="l00031"></a>00031         perror(<span class="stringliteral">&quot;bind()&quot;</span>);
+<a name="l00032"></a>00032         exit(errno);
+<a name="l00033"></a>00033     }
+<a name="l00034"></a>00034     <span class="comment">/* LISTEN */</span>
+<a name="l00035"></a>00035     <span class="keywordflow">if</span> (listen(socket_serveur, <a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>) == <a class="code" href="include_8h.html#a633b0396ff93d336a088412a190a5072">SOCKET_ERROR</a>) {
+<a name="l00036"></a>00036         perror(<span class="stringliteral">&quot;listen()&quot;</span>);
+<a name="l00037"></a>00037         exit(errno);
+<a name="l00038"></a>00038     }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040     <span class="comment">/* Attente d&#39;une demande de connexion */</span>
+<a name="l00041"></a>00041     <span class="keywordflow">while</span> (1) {
+<a name="l00042"></a>00042         printf(<span class="stringliteral">&quot;ID : %d&quot;</span>, <span class="keywordtype">id</span>);
+<a name="l00043"></a>00043         taille = <span class="keyword">sizeof</span>(in_socket_client[id]);
+<a name="l00044"></a>00044         socket_client[id] =
+<a name="l00045"></a>00045             accept(socket_serveur, (<a class="code" href="structure_8h.html#ae334b73cedf7204187dce3f817576009">SOCKADDR</a> *) &amp; in_socket_serveur,
+<a name="l00046"></a>00046                    &amp;taille);
+<a name="l00047"></a>00047         pthread_create(&amp;joueurs[<span class="keywordtype">id</span>], 0, <a class="code" href="connexion_8c.html#a538377468b0b841c23ea422073764b6f">routine_connexion_client</a>, &amp;<span class="keywordtype">id</span>);
+<a name="l00048"></a>00048         <span class="keywordtype">id</span> = <a class="code" href="connexion_8c.html#a9f1af67b2ee3d66b9da17f11857b846a">getId</a>(statut_joueur);
+<a name="l00049"></a>00049         printf(<span class="stringliteral">&quot;CONNEXION CLIENT AVEC ID %d\n&quot;</span>, <span class="keywordtype">id</span>);
+<a name="l00050"></a>00050         <a class="code" href="connexion_8c.html#a0d584810153e0e145dbc1d122d4c48af">setStatut</a>(<span class="keywordtype">id</span>, 1, statut_joueur);
+<a name="l00051"></a>00051     }
+<a name="l00052"></a>00052     <span class="keywordflow">return</span> EXIT_SUCCESS;
+<a name="l00053"></a>00053 }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a><a class="code" href="connexion_8h.html#a538377468b0b841c23ea422073764b6f">00058</a> <span class="keywordtype">void</span>* <a class="code" href="connexion_8c.html#a538377468b0b841c23ea422073764b6f">routine_connexion_client</a>(<span class="keywordtype">void</span> *arg)
+<a name="l00059"></a>00059 {
+<a name="l00060"></a>00060     <span class="keywordtype">int</span> *<span class="keywordtype">id</span> = (<span class="keywordtype">int</span> *) arg;
+<a name="l00061"></a>00061     printf(<span class="stringliteral">&quot;Coucou %d\n&quot;</span>, *<span class="keywordtype">id</span>);
+<a name="l00062"></a>00062     <span class="keywordflow">while</span> (1);
+<a name="l00063"></a>00063     <span class="keywordflow">return</span> EXIT_SUCCESS; 
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="connexion_8h.html#a9f1af67b2ee3d66b9da17f11857b846a">00068</a> <span class="keywordtype">int</span> <a class="code" href="connexion_8c.html#a9f1af67b2ee3d66b9da17f11857b846a">getId</a>(<span class="keywordtype">int</span> *statut_joueur)
+<a name="l00069"></a>00069 {
+<a name="l00070"></a>00070     <span class="keywordtype">int</span> i;
+<a name="l00071"></a>00071     <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="include_8h.html#a787bfbe1eb9dcefcecee22f8470b42ac">MAX_JOUEUR</a>; i++) {
+<a name="l00072"></a>00072         <span class="keywordflow">if</span> (statut_joueur[i] == 0)
+<a name="l00073"></a>00073             <span class="keywordflow">return</span> i;
+<a name="l00074"></a>00074     }
+<a name="l00075"></a>00075     <span class="keywordflow">return</span> <a class="code" href="include_8h.html#a3e0e25d4246ca4e17c61616eb7491b15">MAX_PLAYER_REACHED</a>;
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="connexion_8h.html#a0d584810153e0e145dbc1d122d4c48af">00079</a> <span class="keywordtype">void</span> <a class="code" href="connexion_8c.html#a0d584810153e0e145dbc1d122d4c48af">setStatut</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> etat, <span class="keywordtype">int</span> *statut_joueur)
+<a name="l00080"></a>00080 {
+<a name="l00081"></a>00081     statut_joueur[id] = etat;
+<a name="l00082"></a>00082 }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00085"></a><a class="code" href="connexion_8h.html#a83c33c246bc1ef7b7330c45d69b2814f">00085</a> <span class="keywordtype">int</span> <a class="code" href="connexion_8c.html#a83c33c246bc1ef7b7330c45d69b2814f">getStatut</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> *statut_joueur)
+<a name="l00086"></a>00086 {
+<a name="l00087"></a>00087     <span class="keywordflow">return</span> statut_joueur[id];
+<a name="l00088"></a>00088 }
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 4 2013 09:05:55 pour INFO0601 Projet_Ecoffet_Warlier par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

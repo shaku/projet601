@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>INFO0601 Projet_Ecoffet_Warlier:  Fichier source de carte.c</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">INFO0601 Projet_Ecoffet_Warlier
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">carte.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="carte_8c.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="carte_8h.html">carte.h</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 
+<a name="l00004"></a><a class="code" href="carte_8h.html#a197b837cd3945bbe9377cad61a3cebe0">00004</a> <span class="keywordtype">int</span> <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> **tab, <span class="keywordtype">int</span> **marque, <span class="keywordtype">int</span> largeur,
+<a name="l00005"></a>00005                      <span class="keywordtype">int</span> hauteur)
+<a name="l00006"></a>00006 {
+<a name="l00007"></a>00007     <span class="keywordflow">if</span> (i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; j &lt; largeur &amp;&amp; i &lt; hauteur) {
+<a name="l00008"></a>00008         <span class="keywordflow">if</span> (tab[i][j] == <a class="code" href="carte_8h.html#a3ee479371002a0a258e5c4111cc6e54f">VIDE</a>) {
+<a name="l00009"></a>00009             <span class="keywordflow">if</span> (marque[i][j] == 0) {
+<a name="l00010"></a>00010                 marque[i][j] = 1;
+<a name="l00011"></a>00011                 <span class="keywordflow">return</span> 1 + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i + 1, j, tab, marque, largeur,
+<a name="l00012"></a>00012                                             hauteur) + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i,
+<a name="l00013"></a>00013                                                                         j +
+<a name="l00014"></a>00014                                                                         1,
+<a name="l00015"></a>00015                                                                         tab,
+<a name="l00016"></a>00016                                                                         marque,
+<a name="l00017"></a>00017                                                                         largeur,
+<a name="l00018"></a>00018                                                                         hauteur)
+<a name="l00019"></a>00019                     + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i + 1, j + 1, tab, marque, largeur,
+<a name="l00020"></a>00020                                        hauteur) + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i - 1,
+<a name="l00021"></a>00021                                                                    j, tab,
+<a name="l00022"></a>00022                                                                    marque,
+<a name="l00023"></a>00023                                                                    largeur,
+<a name="l00024"></a>00024                                                                    hauteur)
+<a name="l00025"></a>00025                     + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i, j - 1, tab, marque, largeur,
+<a name="l00026"></a>00026                                        hauteur) + <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(i - 1,
+<a name="l00027"></a>00027                                                                    j - 1,
+<a name="l00028"></a>00028                                                                    tab,
+<a name="l00029"></a>00029                                                                    marque,
+<a name="l00030"></a>00030                                                                    largeur,
+<a name="l00031"></a>00031                                                                    hauteur);
+<a name="l00032"></a>00032             } <span class="keywordflow">else</span>
+<a name="l00033"></a>00033                 <span class="keywordflow">return</span> 0;
+<a name="l00034"></a>00034         } <span class="keywordflow">else</span>
+<a name="l00035"></a>00035             <span class="keywordflow">return</span> 0;
+<a name="l00036"></a>00036     } <span class="keywordflow">else</span>
+<a name="l00037"></a>00037         <span class="keywordflow">return</span> 0;
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 
+<a name="l00041"></a><a class="code" href="carte_8h.html#a825e0e0fd0d9dec4746a8860d73b4af3">00041</a> <span class="keywordtype">void</span> <a class="code" href="carte_8c.html#a825e0e0fd0d9dec4746a8860d73b4af3">generateurCarte</a>(<span class="keywordtype">char</span> *nomFichier, <span class="keywordtype">int</span> hauteur, <span class="keywordtype">int</span> largeur)
+<a name="l00042"></a>00042 {
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044     <span class="keywordtype">int</span> **grille, **marque, random, nbMur = 0, caselibre, i, j, fd;
+<a name="l00045"></a>00045     fd = open(nomFichier, O_CREAT | O_WRONLY, 0777);
+<a name="l00046"></a>00046     marque = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span> *) * hauteur);
+<a name="l00047"></a>00047     grille = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span> *) * hauteur);
+<a name="l00048"></a>00048     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00049"></a>00049         marque[i] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * largeur);
+<a name="l00050"></a>00050         grille[i] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * largeur);
+<a name="l00051"></a>00051     }
+<a name="l00052"></a>00052     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00053"></a>00053         <span class="keywordflow">for</span> (j = 0; j &lt; largeur; j++)
+<a name="l00054"></a>00054             grille[i][j] = 0;
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058     srand(time(NULL));
+<a name="l00059"></a>00059     <span class="keywordflow">do</span> {
+<a name="l00060"></a>00060         <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00061"></a>00061             <span class="keywordflow">for</span> (j = 0; j &lt; largeur; j++) {
+<a name="l00062"></a>00062                 random = (int) rand() % 1000;
+<a name="l00063"></a>00063                 <span class="keywordflow">if</span> (random &gt;= <a class="code" href="carte_8h.html#afd135666a6d94c4f72f4afc58587eb5a">RANDOM_MUR_MIN</a> &amp;&amp; random &lt;= <a class="code" href="carte_8h.html#ad05800796193d0c2c28327e0c81e13cd">RANDOM_MUR_MAX</a>)
+<a name="l00064"></a>00064                     grille[i][j] = 1;
+<a name="l00065"></a>00065                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (random &gt;= <a class="code" href="carte_8h.html#ae92a9a43e95023f0f0e3d1a1dea20650">RANDOM_PRISON</a>)
+<a name="l00066"></a>00066                     grille[i][j] = 2;
+<a name="l00067"></a>00067                 nbMur = (grille[i][j] == 1
+<a name="l00068"></a>00068                          || grille[i][j] == 2) ? nbMur + 1 : nbMur;
+<a name="l00069"></a>00069                 marque[i][j] = 0;
+<a name="l00070"></a>00070             }
+<a name="l00071"></a>00071         }
+<a name="l00072"></a>00072         caselibre =
+<a name="l00073"></a>00073             <a class="code" href="carte_8c.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a>(0, 0, grille, marque, largeur, hauteur);
+<a name="l00074"></a>00074     } <span class="keywordflow">while</span> ((caselibre + nbMur) == (largeur * hauteur));
+<a name="l00075"></a>00075     write(fd, &amp;hauteur, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00076"></a>00076     write(fd, &amp;largeur, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00077"></a>00077     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00078"></a>00078         <span class="keywordflow">for</span> (j = 0; j &lt; largeur; j++) {
+<a name="l00079"></a>00079             write(fd, &amp;grille[i][j], <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00080"></a>00080         }
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082     system(<span class="stringliteral">&quot;clear&quot;</span>);
+<a name="l00083"></a>00083     <a class="code" href="carte_8c.html#a18d96c077edb5ca8a9973a8b440b3db6">afficherCarte</a>(grille, hauteur, largeur);
+<a name="l00084"></a>00084     <span class="keywordflow">while</span> (getchar() != <span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00085"></a>00085     printf(<span class="stringliteral">&quot;Appuyez sur entrée pour retourner au menu.\n&quot;</span>);
+<a name="l00086"></a>00086     getchar();
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00090"></a><a class="code" href="carte_8h.html#ac79f6dea3ea354925b6da5921910eb3d">00090</a> <span class="keywordtype">int</span> **<a class="code" href="carte_8c.html#ac79f6dea3ea354925b6da5921910eb3d">lireCarte</a>(<span class="keywordtype">char</span> *nomFichier)
+<a name="l00091"></a>00091 {
+<a name="l00092"></a>00092     <span class="keywordtype">int</span> i, j, hauteur, largeur, **grille;
+<a name="l00093"></a>00093     <span class="keywordtype">int</span> fd = open(nomFichier, O_RDONLY, 0);
+<a name="l00094"></a>00094     read(fd, &amp;hauteur, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00095"></a>00095     read(fd, &amp;largeur, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00096"></a>00096     grille = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span> *) * hauteur);
+<a name="l00097"></a>00097     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00098"></a>00098         grille[i] = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) * largeur);
+<a name="l00099"></a>00099     }
+<a name="l00100"></a>00100     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00101"></a>00101         <span class="keywordflow">for</span> (j = 0; j &lt; largeur; j++) {
+<a name="l00102"></a>00102             read(fd, &amp;grille[i][j], <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
+<a name="l00103"></a>00103         }
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105     <span class="keywordflow">return</span> grille;
+<a name="l00106"></a>00106 }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 
+<a name="l00109"></a><a class="code" href="carte_8h.html#a18d96c077edb5ca8a9973a8b440b3db6">00109</a> <span class="keywordtype">void</span> <a class="code" href="carte_8c.html#a18d96c077edb5ca8a9973a8b440b3db6">afficherCarte</a>(<span class="keywordtype">int</span> **grille, <span class="keywordtype">int</span> hauteur, <span class="keywordtype">int</span> largeur)
+<a name="l00110"></a>00110 {
+<a name="l00111"></a>00111     <span class="keywordtype">int</span> i, j;
+<a name="l00112"></a>00112     printf(<span class="stringliteral">&quot;       &quot;</span>);
+<a name="l00113"></a>00113     <span class="keywordflow">for</span> (i = 0; i &lt; largeur + 2; i++) {
+<a name="l00114"></a>00114         printf(<span class="stringliteral">&quot;Q&quot;</span>);
+<a name="l00115"></a>00115     }
+<a name="l00116"></a>00116     printf(<span class="stringliteral">&quot;\n&quot;</span>);
+<a name="l00117"></a>00117     <span class="keywordflow">for</span> (i = 0; i &lt; hauteur; i++) {
+<a name="l00118"></a>00118         printf(<span class="stringliteral">&quot;%.3d  : Q&quot;</span>, i);
+<a name="l00119"></a>00119         <span class="keywordflow">for</span> (j = 0; j &lt; largeur; j++) {
+<a name="l00120"></a>00120             <span class="keywordflow">switch</span> (grille[i][j]) {
+<a name="l00121"></a>00121             <span class="keywordflow">case</span> 0:
+<a name="l00122"></a>00122                 printf(<span class="stringliteral">&quot; &quot;</span>);
+<a name="l00123"></a>00123                 <span class="keywordflow">break</span>;
+<a name="l00124"></a>00124             <span class="keywordflow">case</span> 1:
+<a name="l00125"></a>00125                 printf(<span class="stringliteral">&quot;O&quot;</span>);
+<a name="l00126"></a>00126                 <span class="keywordflow">break</span>;
+<a name="l00127"></a>00127             <span class="keywordflow">case</span> 2:
+<a name="l00128"></a>00128                 printf(<span class="stringliteral">&quot;P&quot;</span>);
+<a name="l00129"></a>00129                 <span class="keywordflow">break</span>;
+<a name="l00130"></a>00130             <span class="keywordflow">default</span>:
+<a name="l00131"></a>00131                 <span class="keywordflow">break</span>;
+<a name="l00132"></a>00132             }
+<a name="l00133"></a>00133         }
+<a name="l00134"></a>00134         printf(<span class="stringliteral">&quot;Q\n&quot;</span>);
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136     printf(<span class="stringliteral">&quot;       &quot;</span>);
+<a name="l00137"></a>00137     <span class="keywordflow">for</span> (i = 0; i &lt; largeur + 2; i++) {
+<a name="l00138"></a>00138         printf(<span class="stringliteral">&quot;Q&quot;</span>);
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140     printf(<span class="stringliteral">&quot;\n&quot;</span>);
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 }
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 4 2013 09:05:55 pour INFO0601 Projet_Ecoffet_Warlier par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

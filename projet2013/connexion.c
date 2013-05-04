@@ -1,0 +1,106 @@
+#include "connexion.h"
+
+
+void *routine_connexion(void *s)
+{
+
+
+    int id = 0,*temp;
+    int z = 0;
+
+    serveur_t *serveur = (serveur_t *) s;
+    /* Initialisation socket serveur + interface */
+    if ((socket_serveur =
+	 socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+	perror("Problème socket serveur");
+	exit(errno);
+    }
+
+    in_socket_serveur.sin_addr.s_addr = inet_addr(serveur->adresse);
+    in_socket_serveur.sin_family = AF_INET;
+    in_socket_serveur.sin_port = htons(serveur->port);
+    /* BIND */
+    if (bind
+	(socket_serveur, (SOCKADDR *) & in_socket_serveur,
+	 sizeof(in_socket_serveur)) == SOCKET_ERROR) {
+	perror("bind()");
+	exit(errno);
+    }
+    /* LISTEN */
+    if (listen(socket_serveur, MAX_JOUEUR) == SOCKET_ERROR) {
+	perror("listen()");
+	exit(errno);
+    }
+
+    /* Attente d'une demande de connexion */
+    while (1) {
+	id = getId();	
+	temp = (int *)malloc(sizeof(int));	
+	*temp = id;	
+	taille[id] = sizeof(in_socket_client[id]);
+	socket_client[id] =
+	    accept(socket_serveur, (SOCKADDR *) & in_socket_client[id],
+		   &taille[id]);
+	pthread_create(&joueurs[id], 0, routine_connexion_client, temp);
+	setStatut(id, 1);
+
+	for (z=0;z<16;z++){ printf("Statut %d : %d \n",z,getStatut(z)); }
+    }
+    return EXIT_SUCCESS;
+}
+
+
+
+
+void *routine_connexion_client(void *arg)
+{
+    ordre_t *ordre = malloc(sizeof(ordre_t));
+	int id,*temp = (int *)arg;
+	id = *temp;
+    ordre->event = -1;
+    printf("ID : %d - SOCKET CLIENT : %d\n", id, socket_client[id]);
+    if (send(socket_client[id], &id, sizeof(int), 0) == SOCKET_ERROR) {
+	perror("Erreur send connexion");
+	exit(errno);
+    }
+
+    while (ordre->event != DECONNEXION) {
+	recv(socket_client[id], ordre, sizeof(ordre_t), 0);
+	switch(ordre->event){
+		case AJOUT: 
+			printf("AJOUT D'UN DETECTIVE (X,Y) : (%d,%d)\n",ordre->position.x,ordre->position.y);
+			break;
+		case RETRAIT: break; 
+		case DECONNEXION: 
+			setStatut(id,0);
+			close(socket_client[id]);
+			break;	
+	}
+    }
+    printf("Le client %d s'est déconnecté.\n",id);
+    return 0;
+}
+
+
+
+int getId()
+{
+    int i;
+    for (i = 0; i < MAX_JOUEUR; i++) {
+	if (statut_joueur[i] == 0)
+	    return i;
+    }
+    return MAX_PLAYER_REACHED;
+}
+
+
+void setStatut(int id, int etat)
+{
+    statut_joueur[id] = etat;
+}
+
+
+int getStatut(int id)
+{
+    return statut_joueur[id];
+}

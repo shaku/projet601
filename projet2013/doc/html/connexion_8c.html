@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>INFO0601 Projet_Ecoffet_Warlier: Référence du fichier connexion.c</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">INFO0601 Projet_Ecoffet_Warlier
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier connexion.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="connexion_8h_source.html">connexion.h</a>&quot;</code><br/>
+</div>
+<p><a href="connexion_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connexion_8c.html#a450d74dd8f9416069371fcfd27d494f2">routine_connexion</a> (void *s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connexion_8c.html#a538377468b0b841c23ea422073764b6f">routine_connexion_client</a> (void *arg)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connexion_8c.html#a9f1af67b2ee3d66b9da17f11857b846a">getId</a> (int *statut_joueur)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connexion_8c.html#a0d584810153e0e145dbc1d122d4c48af">setStatut</a> (int id, int etat, int *statut_joueur)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connexion_8c.html#a83c33c246bc1ef7b7330c45d69b2814f">getStatut</a> (int id, int *statut_joueur)</td></tr>
+</table>
+<hr/><h2>Documentation des fonctions</h2>
+<a class="anchor" id="a9f1af67b2ee3d66b9da17f11857b846a"></a><!-- doxytag: member="connexion.c::getId" ref="a9f1af67b2ee3d66b9da17f11857b846a" args="(int *statut_joueur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="connexion_8h.html#a9f1af67b2ee3d66b9da17f11857b846a">getId</a> </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>statut_joueur</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Retourne un identifiant libre de joueur </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*statut_joueur</td><td>Liste des statuts des joueurs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>int : Un identifiant inutilisé dans la liste </dd>
+<dd>
+MAX_PLAYER_REACHED : Erreur, tous les identifiants sont actuellement utilisés </dd></dl>
+
+<p>Définition à la ligne <a class="el" href="connexion_8c_source.html#l00068">68</a> du fichier <a class="el" href="connexion_8c_source.html">connexion.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83c33c246bc1ef7b7330c45d69b2814f"></a><!-- doxytag: member="connexion.c::getStatut" ref="a83c33c246bc1ef7b7330c45d69b2814f" args="(int id, int *statut_joueur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="connexion_8h.html#a83c33c246bc1ef7b7330c45d69b2814f">getStatut</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>statut_joueur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Obtient le statut d'un joueur </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Identifiant du joueur à vérifier </td></tr>
+    <tr><td class="paramname">*statut_joueur</td><td>Liste des statuts des joueurs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>statutJoueur : Statut du joueur </dd></dl>
+
+<p>Définition à la ligne <a class="el" href="connexion_8c_source.html#l00085">85</a> du fichier <a class="el" href="connexion_8c_source.html">connexion.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a450d74dd8f9416069371fcfd27d494f2"></a><!-- doxytag: member="connexion.c::routine_connexion" ref="a450d74dd8f9416069371fcfd27d494f2" args="(void *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* <a class="el" href="connexion_8h.html#a450d74dd8f9416069371fcfd27d494f2">routine_connexion</a> </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Routine de gestion des demandes de connexion des clients </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*s</td><td>Structure <a class="el" href="structserveur__t.html">serveur_t</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>EXIT_SUCCESS : Arrêt normal du programme. </dd>
+<dd>
+errno : Arrêt anormal du programme. </dd></dl>
+
+<p>Définition à la ligne <a class="el" href="connexion_8c_source.html#l00004">4</a> du fichier <a class="el" href="connexion_8c_source.html">connexion.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a538377468b0b841c23ea422073764b6f"></a><!-- doxytag: member="connexion.c::routine_connexion_client" ref="a538377468b0b841c23ea422073764b6f" args="(void *arg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* <a class="el" href="connexion_8h.html#a538377468b0b841c23ea422073764b6f">routine_connexion_client</a> </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Routine de thread qui s'occupe d'un client après que celui-ci se soit connecté </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*arg</td><td>Identifiant du client à connaître </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>EXIT_SUCCESS : Arrêt normal du programme. </dd>
+<dd>
+errno : Arrêt anormal du programme. </dd></dl>
+
+<p>Définition à la ligne <a class="el" href="connexion_8c_source.html#l00058">58</a> du fichier <a class="el" href="connexion_8c_source.html">connexion.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d584810153e0e145dbc1d122d4c48af"></a><!-- doxytag: member="connexion.c::setStatut" ref="a0d584810153e0e145dbc1d122d4c48af" args="(int id, int etat, int *statut_joueur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="connexion_8h.html#a0d584810153e0e145dbc1d122d4c48af">setStatut</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>etat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>statut_joueur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Modifie le statut d'un joueur </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Identifiant du joueur </td></tr>
+    <tr><td class="paramname">etat</td><td>Etat cible du joueur </td></tr>
+    <tr><td class="paramname">*statutJoueur</td><td>Liste des statuts des joueurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Définition à la ligne <a class="el" href="connexion_8c_source.html#l00079">79</a> du fichier <a class="el" href="connexion_8c_source.html">connexion.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 4 2013 09:05:55 pour INFO0601 Projet_Ecoffet_Warlier par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

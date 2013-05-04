@@ -1,0 +1,66 @@
+#include "client.h"
+
+
+
+int main(int argc, char **argv)
+{
+	int choix,i,tabDetective[MAX_DETECTIVE];
+    SOCKET socket_client;
+    SOCKADDR_IN in_socket;
+    ordre_t *ordre = malloc(sizeof(ordre_t));
+    ordre->event = -1;
+	
+	for (i=0;i<MAX_DETECTIVE;i++) tabDetective[i] = -1;
+	tabDetective[0] = 3;
+	tabDetective[4] = 1;
+	tabDetective[5] = 12;
+    if ((socket_client =
+	 socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+	perror("Erreur socket client");
+    }
+    in_socket.sin_addr.s_addr = inet_addr(argv[1]);
+    in_socket.sin_family = AF_INET;
+    in_socket.sin_port = htons(atoi(argv[2]));
+
+    if ((connect
+	 (socket_client, (SOCKADDR *) & in_socket,
+	  sizeof(in_socket)) != SOCKET_ERROR)) {
+	printf("Connexion au serveur\n");
+    }
+
+while(ordre->event != DECONNEXION){
+	printf("=== MENU ===\n");
+	printf("1. Ajout d'un détective.\n");
+	printf("2. Retrait d'un détective.\n");
+	printf("3. Déconnexion.\n");
+	printf("Votre choix : ");
+	scanf("%d",&choix);
+	switch(choix){
+		case 1:
+			ordre->event = AJOUT;
+			printf("Position X : ");
+			scanf("%d",&ordre->position.x);
+			printf("Position Y : ");
+			scanf("%d",&ordre->position.y);
+			send(socket_client,ordre,sizeof(ordre_t),0);
+			break;
+		case 2: 
+			for (i=0;i<MAX_DETECTIVE;i++){
+				if (tabDetective[i] != -1){
+					printf("Detective %d (%d) \n",i,tabDetective[i]);				
+				}			
+			}
+			printf("Choix : ");
+			scanf("&d",&choix);
+			break;
+		case 3: break;
+		default: break;	
+	}
+	
+
+}
+
+    send(socket_client, ordre, sizeof(ordre), 0);
+
+    return 0;
+}

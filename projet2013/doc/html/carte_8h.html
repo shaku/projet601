@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>INFO0601 Projet_Ecoffet_Warlier: Référence du fichier carte.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">INFO0601 Projet_Ecoffet_Warlier
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier carte.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="include_8h_source.html">include.h</a>&quot;</code><br/>
+</div>
+<p><a href="carte_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a3ee479371002a0a258e5c4111cc6e54f">VIDE</a>&#160;&#160;&#160;0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a528503a3fc17d7c9f3ddfb07899db5c2">MUR</a>&#160;&#160;&#160;1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a68ab77de707436c3ee1c3d4f81ac7b99">PRISON</a>&#160;&#160;&#160;2</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#ae92a9a43e95023f0f0e3d1a1dea20650">RANDOM_PRISON</a>&#160;&#160;&#160;975</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#afd135666a6d94c4f72f4afc58587eb5a">RANDOM_MUR_MIN</a>&#160;&#160;&#160;850</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#ad05800796193d0c2c28327e0c81e13cd">RANDOM_MUR_MAX</a>&#160;&#160;&#160;975</td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a> (int i, int j, int **tab, int **marque, int largeur, int hauteur)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a825e0e0fd0d9dec4746a8860d73b4af3">generateurCarte</a> (char *nomFichier, int hauteur, int largeur)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#ac79f6dea3ea354925b6da5921910eb3d">lireCarte</a> (char *nomFichier)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="carte_8h.html#a18d96c077edb5ca8a9973a8b440b3db6">afficherCarte</a> (int **grille, int hauteur, int largeur)</td></tr>
+</table>
+<hr/><h2>Documentation des macros</h2>
+<a class="anchor" id="a528503a3fc17d7c9f3ddfb07899db5c2"></a><!-- doxytag: member="carte.h::MUR" ref="a528503a3fc17d7c9f3ddfb07899db5c2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#a528503a3fc17d7c9f3ddfb07899db5c2">MUR</a>&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00016">16</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a68ab77de707436c3ee1c3d4f81ac7b99"></a><!-- doxytag: member="carte.h::PRISON" ref="a68ab77de707436c3ee1c3d4f81ac7b99" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#a68ab77de707436c3ee1c3d4f81ac7b99">PRISON</a>&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00017">17</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad05800796193d0c2c28327e0c81e13cd"></a><!-- doxytag: member="carte.h::RANDOM_MUR_MAX" ref="ad05800796193d0c2c28327e0c81e13cd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#ad05800796193d0c2c28327e0c81e13cd">RANDOM_MUR_MAX</a>&#160;&#160;&#160;975</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00021">21</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd135666a6d94c4f72f4afc58587eb5a"></a><!-- doxytag: member="carte.h::RANDOM_MUR_MIN" ref="afd135666a6d94c4f72f4afc58587eb5a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#afd135666a6d94c4f72f4afc58587eb5a">RANDOM_MUR_MIN</a>&#160;&#160;&#160;850</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00020">20</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae92a9a43e95023f0f0e3d1a1dea20650"></a><!-- doxytag: member="carte.h::RANDOM_PRISON" ref="ae92a9a43e95023f0f0e3d1a1dea20650" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#ae92a9a43e95023f0f0e3d1a1dea20650">RANDOM_PRISON</a>&#160;&#160;&#160;975</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00019">19</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3ee479371002a0a258e5c4111cc6e54f"></a><!-- doxytag: member="carte.h::VIDE" ref="a3ee479371002a0a258e5c4111cc6e54f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="carte_8h.html#a3ee479371002a0a258e5c4111cc6e54f">VIDE</a>&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8h_source.html#l00015">15</a> du fichier <a class="el" href="carte_8h_source.html">carte.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Documentation des fonctions</h2>
+<a class="anchor" id="a18d96c077edb5ca8a9973a8b440b3db6"></a><!-- doxytag: member="carte.h::afficherCarte" ref="a18d96c077edb5ca8a9973a8b440b3db6" args="(int **grille, int hauteur, int largeur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="carte_8h.html#a18d96c077edb5ca8a9973a8b440b3db6">afficherCarte</a> </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>grille</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>largeur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8c_source.html#l00109">109</a> du fichier <a class="el" href="carte_8c_source.html">carte.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a825e0e0fd0d9dec4746a8860d73b4af3"></a><!-- doxytag: member="carte.h::generateurCarte" ref="a825e0e0fd0d9dec4746a8860d73b4af3" args="(char *nomFichier, int hauteur, int largeur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="carte_8h.html#a825e0e0fd0d9dec4746a8860d73b4af3">generateurCarte</a> </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nomFichier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>largeur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8c_source.html#l00041">41</a> du fichier <a class="el" href="carte_8c_source.html">carte.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac79f6dea3ea354925b6da5921910eb3d"></a><!-- doxytag: member="carte.h::lireCarte" ref="ac79f6dea3ea354925b6da5921910eb3d" args="(char *nomFichier)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int** <a class="el" href="carte_8h.html#ac79f6dea3ea354925b6da5921910eb3d">lireCarte</a> </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nomFichier</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8c_source.html#l00090">90</a> du fichier <a class="el" href="carte_8c_source.html">carte.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a197b837cd3945bbe9377cad61a3cebe0"></a><!-- doxytag: member="carte.h::verifValiditeMap" ref="a197b837cd3945bbe9377cad61a3cebe0" args="(int i, int j, int **tab, int **marque, int largeur, int hauteur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="carte_8h.html#a197b837cd3945bbe9377cad61a3cebe0">verifValiditeMap</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>tab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>marque</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>largeur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hauteur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Définition à la ligne <a class="el" href="carte_8c_source.html#l00004">4</a> du fichier <a class="el" href="carte_8c_source.html">carte.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 4 2013 09:05:55 pour INFO0601 Projet_Ecoffet_Warlier par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>
